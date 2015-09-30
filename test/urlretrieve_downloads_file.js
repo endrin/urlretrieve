@@ -4,7 +4,8 @@ const nock = require('nock'),
       chai = require('chai'),
       expect = chai.expect,
       path = require('path'),
-      fs = require('fs');
+      fs = require('fs'),
+      mkdirp = require('mkdirp');
 
       chai.use(require('chai-as-promised'));
 
@@ -14,7 +15,12 @@ const urlretrieve = require('../index.js');
 
 describe("urlretrieve downloads file", function () {
 
+  before(function (done) {
+    mkdirp(Config.downloadLocation, done);
+  });
+
   context("No errors, no options given", function () {
+
     beforeEach(function () {
       nock(Config.server.host)
         .get(Config.server.path)

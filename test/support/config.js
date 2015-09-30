@@ -6,7 +6,7 @@ var path = require('path'),
 var kb500 = 500 * 1024,
     fileSize = Math.floor(Math.random() * kb500 + kb500),
     fileContent = crypto.randomBytes(fileSize),
-    fileHost = 'http://localhost',
+    fileHost = 'http://test.server.com',
     filePath = '/someFile.zip',
     fileUrl = fileHost + filePath;
 

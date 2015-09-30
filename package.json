@@ -21,7 +21,9 @@
     "mocha": "^2.3.3",
     "nock": "^2.13.0"
   },
-  "dependencies": {},
+  "dependencies": {
+    "mkdirp": "^0.5.1"
+  },
   "engines": {
     "node": ">=4.0.0"
   }
