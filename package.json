@@ -1,0 +1,27 @@
+{
+  "private": true,
+  "name": "urlretrieve",
+  "version": "0.1.0",
+  "description": "Python's urllib.urlretrieve clone",
+  "main": "index.js",
+  "scripts": {
+    "test": "gulp test"
+  },
+  "author": "me",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^3.3.0",
+    "chai-as-promised": "^5.1.0",
+    "gulp": "^3.9.0",
+    "gulp-jshint": "^1.11.2",
+    "gulp-load-plugins": "^0.10.0",
+    "gulp-mocha": "^2.1.3",
+    "gulp-util": "^3.0.6",
+    "jshint-stylish": "^2.0.1",
+    "mocha": "^2.3.3",
+    "nock": "^2.12.0",
+    "sinon": "^1.17.0",
+    "sinon-chai": "^2.8.0"
+  },
+  "dependencies": {}
+}
