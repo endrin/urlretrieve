@@ -1,1 +1,3 @@
 node_modules/
+test/support/*.xml
+test/support/download/
