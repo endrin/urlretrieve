@@ -1,10 +1,25 @@
 'use strict';
 
 var path = require('path'),
-    crypto = require('crypto');
+    crypto = require('crypto'),
+    Readable = require('stream').Readable;
+
+class RandomStream extends Readable {
+  constructor(size) {
+    super({encoding: 'binary', objectMode: 'false'});
+    this.data = crypto.randomBytes(size);
+  }
+
+  _read () {
+    this.push(this.data);
+    this.push(null);
+  }
+
+}
 
 var kb500 = 500 * 1024,
     fileSize = Math.floor(Math.random() * kb500 + kb500),
+    fileSizePart = Math.floor(fileSize * Math.random()),
     fileContent = crypto.randomBytes(fileSize),
     fileHost = 'http://test.server.com',
     filePath = '/someFile.zip',
@@ -16,7 +31,9 @@ module.exports = {
     host: fileHost,
     path: filePath,
     fileSize: fileSize,
+    partialSize: fileSizePart,
     file: fileContent,
+    brokenFile: () => new RandomStream(fileSizePart),
     headers: {
       'accept-ranges': 'bytes',
       age: '18',
