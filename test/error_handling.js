@@ -52,15 +52,25 @@ describe("urlretrieve error handling", function () {
 
     it('should throw "content too short" error', function () {
       return expect(this.result).to.be.rejected
-      .and.eventually.satisfy(function (err) {
-        expect(err.message).to.be.equal('Content too short');
-        expect(err.size).to.be.equal(Config.server.partialSize);
-        expect(err.headers).to.be.equal(Config.server.headers);
-        return true;
-      });
+        .and.eventually.satisfy(function (err) {
+          expect(err.message).to.be.equal('Content too short');
+          expect(err.size).to.be.equal(Config.server.partialSize);
+          expect(err.headers).to.be.equal(Config.server.headers);
+          return true;
+        });
     });
 
-    it('should delete broken file at taget location');
+    it('should delete broken file at taget location', function () {
+      return expect(this.result).to.be.rejected
+        .and.eventually.satisfy(function fileShouldNotExist(err) {
+          try {
+            fs.statSync(this.expectedPath);
+          } catch (e) {
+            if (e.code === 'ENOENT') return true;
+          }
+          return false;
+        });
+    });
 
   });
 
